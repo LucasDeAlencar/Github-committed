@@ -8,12 +8,13 @@ Este script automatiza o processo de commit e push para o GitHub através de uma
 
 ## 🖥️ Compatibilidade
 
-** ⚠️ IMPORTANTE:** Este script funciona apenas em sistemas baseados em APT (Debian e derivados):
+** ⚠️ IMPORTANTE:** Este script funciona apenas em sistemas baseados em APT e ZYPPER (Debian e derivados, bem como sistemas SUSE):
 - Ubuntu
 - Debian
 - Linux Mint
 - Elementary OS
 - Pop!_OS
+- Opensuse
 - Outros derivados do Debian
 
 ## 📦 Pré-requisitos
