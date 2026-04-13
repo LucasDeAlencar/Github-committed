@@ -2,11 +2,40 @@
 
 # Script para commit e push no GitHub
 # Autor: Lucas Clemente
+# Suporta: apt (Debian/Ubuntu), zypper (openSUSE/SUSE)
+
+detect_package_manager() {
+    if command -v apt-get &> /dev/null; then
+        echo "apt"
+    elif command -v zypper &> /dev/null; then
+        echo "zypper"
+    else
+        echo "unknown"
+    fi
+}
+
+install_package() {
+    local pkg=$1
+    local pm=$(detect_package_manager)
+    
+    case $pm in
+        apt)
+            sudo apt-get update && sudo apt-get install -y "$pkg"
+            ;;
+        zypper)
+            sudo zypper install -y "$pkg"
+            ;;
+        *)
+            echo "Gerenciador de pacotes não suportado. Instale $pkg manualmente."
+            return 1
+            ;;
+    esac
+}
 
 # Verificar se zenity está instalado
 if ! command -v zenity &> /dev/null; then
     echo "Instalando zenity..."
-    sudo apt-get update && sudo apt-get install -y zenity
+    install_package zenity
 fi
 
 # Primeiro, selecionar o diretório
